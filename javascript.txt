@@ -1,0 +1,367 @@
+Javascript is an Interpreted language
+
+Basically c,c++, java compiled before executed.Compier takes the code
+and produces a machine efficient representation of it, usally optimized for 
+runtime performance
+
+Scripting languages such as javascript,vbscript are interpreted which means the
+browser runs each line of JS code as it gets to it.
+They place less importance on runtime performance and are more geared towards 
+tasks like prototyping,interactive coding and flexibility
+But now browsers has found a middle ground 
+	-JS is compiled on the fly.giving both the advantage of compilation and 
+	interpretation
+
+
+
+Variable Names/function names:
+	-should start with a 
+		<letter>
+		<$>
+		<_>
+	-Not with any other special characters
+	-for primitive types variables holds the actual value
+	-for NON-primitive types (objects,fucntion values) variables hold the address value
+Loops:
+
+Decision:
+if(expression){
+	Executes for [],{}.....
+	Does not execute if undefined,null,0,'',false
+	
+}
+
+Functions
+Math
+	math.random() returns 0-1 
+	math.floor()  rounds off the float values
+
+Note:
+	-Javascript is a pass-by-value/pass-by -copy for primitive types
+	-for non-primitive types pass by reference(address)
+	-Function returns undefined if its not explicitly defined
+
+Array
+Note:
+	-All the values in array need not be in same type
+	-
+Object:
+	-variables holds the address of the objects
+	-"this" keyword is used to represent the object in which its defined 
+	-"this" gets enbled when we instantiate the object
+	-object.property ; object['property'] ; [<expression>]
+
+**Types:
+	-Primitive : number,string,boolean
+	-Objects	:object
+	-undefined is a value and its type is undefined; (false)
+	-typeof()  returns string
+	-null is for is for objetcs which doesnt have any properties or methods
+	-null is intended to represent an object that isn't there* hf
+	-null is also used as a value (false)
+	-undefined for variable declared but not assigned with any value
+	-NaN a value (Not a Number) It represents the numeric value that cant be represented in js
+		eg: 0/0; ""*5;
+	-NaN!=NaN (false)
+	-NaN can be used as a value too but not with operators ie. x==NaN
+	-Because NaN!=NaN it requires a special fucntion isNaN(x) returns boolean
+	-typeof(NaN)= 'number'  !!!
+	-10/0 gives infinity which canbe used as a value
+	
+	
+Operators:
+	-"==" operator compares the types of its operands
+When the types are different the javascript tries to convert them to the same type
+How?
+Note: when comparison all types are converted to its equiv number format
+Case :1
+comparing the number with string
+Numbered string gets converted to number.Alphanumeric gets converted to NaN 
+Case 2:
+Bool vs number
+true=1; false=0;
+case 3:
+undefined='no value' ; null= 'no value' true;
+
+case 4:
+''=0;
+
+Strict Equality '===' same type and same value 
+
+comparing > ,< between strings - alphabetic order a<b true
+
+*** '====' compares object references/address
+
+"+" operator left- right associativity 1+2+"x"=3x;
+
+boolean+"x"=truex
+	
+HTML:
+	-document.getElementById returns null
+	-all browser methods returns null;
+	
+Functions:
+What are first class values?
+	-Assign the value to a variable
+	-Pass the value to a function
+	-Return the value from a function
+*Functions in javascript are first class status
+
+1.Assign value to a variable:
+var func=function(){
+	//does something
+}
+
+2.Pass the value to a function:
+function loopArray(list,handlerFunction){
+	for(var i=0;i<list.lenght;i++){
+		handlerFunction(list[i]);
+	}
+}
+
+3.Return the value from a function:
+
+function getCorrectFunction(parameter){
+	//based on the parameter do some computation 
+	//select the correct function from the list of functions
+	// return the function reference
+}
+
+var returnedFunction=getCorrectFunction(somePrarmeter);
+returnedFunction();// this gets executed
+
+Closure:
+A function together with the refrencing environment
+Eg:
+//A function returns the refrence of another function defined inside it 
+//This is called a closure. The reference variable holds the function and its referencing 
+//enviroment variables
+
+Basically a closure is created when we have a reference function with free variables
+Note:Closure contains the actual environment,not copy
+ie.the free variables acts as a static variable. closure is a static function???
+
+Creating a closure by returning a function reference
+function makeCounter() {
+	var count = 0;
+	function counter() {
+		count = count + 1;
+		return count;
+	}
+	return counter; //closure
+}
+
+Note:
+basically i have a function which can access the free variables if its coded that way
+The free variables can also be initialised!!! when calling the function enclosing the closure!***
+
+Some Examples:
+function setPassword(password){
+	//password is the free variable
+	return function checkPassword(newPassword){
+		return(password===newPassword); //true/false //strict comparison
+	}
+}
+//set the actual password
+var passwordChecker=setPassword('truePassword');
+passwordChecker('isThisThePassword'); //returns true/false
+/*******************************************/
+Note:Instead of the function returning the another function reference it can return an object
+The object can contain property and methods. The methods will have access to the free variables
+
+function initialiseFreeVariable(freeVariable_1,freeVariable_2){
+	var freeVariable_3="somevalue";
+	
+	return ({
+		property_1:'somevalue'
+		method_1:function(){
+			//does something
+		}
+	});
+}
+ 
+var object=initialiseFreeVariable('x','y');
+var returns=object.method_1();
+
+Note:These behaves as static that is changes made at any part in the code is updated and reflected
+Because the function are stored by its reference!!***
+
+
+Sort:
+js array has sort method that requires a function that tell how the array shud be sorted
+//My compareFunction should be
+function anyCompareFunction(item1,item2){
+	//do something
+	//should return only -1,0,1;
+	//1  item1 > item2
+	//0  item1 = item2
+	//-1 item1 < item2
+}
+
+
+Object:
+Note:Unlike other languages like java,c#  js is looser in types
+ie, var student=new Student();
+typeof(student) => Object not Student
+This is actually more powerful making it more flexible and dynamic
+
+How to know more about the objects:
+	-Js Knows which contructor created the object through instance of operator
+How to use?
+var car =new Car();
+car instanceof Car -> returns true 
+Also,
+car.newProperty="value";
+car is still an instance of Car
+
+Function Overloading 
+Unlike java,c# js does not support method overloading
+If it finds functions with same names it takes the last defined function
+
+Built-in Objects:
+Go through all the built-in objects
+Date, Math, String, Array, and Object
+Here Math is not a contructor function it is simply an singleton object
+
+Constructor function:
+function which constructs the objects are called constructor function 
+eg: 
+function Dog(name,breed){	//by convention Constructor names are written in Caps
+	this.name=name;
+	this.breed=breed;
+	
+	this.method=function(){
+		//may use the above properties 
+	}
+}
+
+Noe:***this keyword refers to the object whose method was called
+var dogObject=new Dog();
+dogObject.method(); //this => dogObject;
+
+Extra strength Objects:
+Js has very poerful object Model
+Unlike typical class-based object-oriented system JS is more powerful prototype model
+Where objects can inherit and extend the behaviour of other objects***
+
+
+***Important
+Note: 
+Javascript doesnt have class at all!
+Object inherit behaviour from other objects which we call as protypal inheritance/inheritance based on prototypes
+More flexible,efficient,expressive.Expressive in such a way that it can implement the classical inheritance!!!***
+
+What are prototypes?
+The object you are inheriting the behaviour is called the prototype
+
+Note:***Every function has a prototype property thereby making functions look like objects!!!
+
+function test(){
+	//does something
+} 
+Now test has a prototype property which is ready to hold a an object*
+By default test.prototype={};
+We can assign property/methods to that prototype object
+
+
+How inheritance works:
+consider, Constructor function
+
+function Dog(){
+	this.name=name;
+	this.breed=breed;
+	this.wieght=wieght;
+}
+Its prototype
+
+Dog.prototype.species=canine;
+Dog.prototype.bark=function(){
+	//dog barks
+}
+
+//code 
+var fido=Dog("","",""); //get the fido instance ie. fido object
+fido.bark();
+-To evaluate this code we look in the fido instance for a bark method. 
+But there isn't one.
+-so we look at its prototype property to find the bark method
+-If present invoke it else throw an error
+
+Note:
+The bark() can contain <this> keyword on the prototype.But it still refers to
+the object on which the method is called ie.fido
+
+Overiding the Prototype:
+if we want to override the bark() for spot instance
+var spot=new Dog();
+spot.bark=function (){
+	//do something
+}
+
+Note: overriding the property/method in the prototype can happen only after 
+the object which needs overriding is initilised
+
+Now,Teaching all dogs new Tricks!!!***
+Prototypes are dynamic!!!****
+By dynamic we mean that prototype's property and methods can be modified/add/removed
+at run time and all the object instances that inherited from it will immediately
+inherit the modified prototype at run time
+Similar to prefab in unity
+
+Note:
+if we directly modify prototype's methods/properties its gets reflected to all instances
+Dog.prototype.bark=function(){
+	//modified method
+}
+//or create a new one
+Dog.prototype.newProperty='somevalue'
+Dog.prototype.newMethod=function(){
+}
+
+But***,
+If you try to do the same with any of the object instance,
+the modified property/method is created in the object itself thereby overriding
+the prototype's methods and properties
+
+
+Dog.prototype.sitting = false;
+Dog.prototype.sit = function() {
+	if (this.sitting) {
+		console.log(this.name + " is already sitting");
+	} else {
+		this.sitting = true; //this creates a property in spot instance
+	console.log(this.name + " is now sitting");
+	}
+};
+
+var spot=new Dog();
+spot.sit();
+1.spot doesn't have a sit method hence it looks into the prototype
+2.In prototype we see sitting is false
+3.We set this sitting to true.This adds a new sitting property to spot and
+assigns its value true
+4.when  spot.sit(); called for second time the sitting property is taken from
+the spot instance thereby overriding the prototype.
+
+How to find whether my property is from instance or its prototype
+spot.hasOwnProperty('property/method name'); returns boolean
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
