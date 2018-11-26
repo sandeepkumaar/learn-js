@@ -1,0 +1,65 @@
+Functions:
+	Functions are building blocks of an application
+	In Javascript, Functions are	
+		- first class
+		- functions as Objects
+		- runtime function definition
+		
+What is first class citizen in programming language?
+	First class citizen is an entity which supports all the operations generally
+	available to other entities
+	Operation typically include
+		- entity being passed as an argument
+		- returned from a function
+		- modified
+		- assigned to a variable
+		
+Guidelines for Better functions:
+	- DRY  	Don't Repeat Yourself
+	- DOT		Do One Thing
+	- KISS 	Keep It Simple Stupid
+	
+	
+Immutability:
+Note:
+In javascript complex datatypes are arrays and objects 
+They are pass by reference meaning they pass as address*
+
+Arrays and Objects behave in the same way with some differences
+	- Keys(string) in Object are Index(number) in arrays
+	- we can assign/create Index like Key in arrays
+	
+var x = [];
+x[20] = "sandeep"	;
+x; // [empty,empty,.. ,20]
+x[0] // undefined
+
+Datastructures represented by these non-primitive types are called Collections
+Objects --> Arrays 	// Object.keys(); Object.values()
+Arrays --> Objects  // reduce
+can be converted easily
+
+
+Why immutability?
+Inorder to minimize side effects we should clone the object,array,dataStruture
+
+Directly this is not possible for deep dataStrutures
+But we can enforce this when performing operations inside functions by 
+cloning every possible bits into a cloned 
+This way we can achieve immutability at max
+
+some of the methods that return a new collection,array,object
+
+Object:
+	Object.create(); //simple objects
+
+Arrays:
+	slice();
+	spread?
+	map
+	filter
+	reduce
+	other array methods
+	
+Note:
+
