@@ -17,7 +17,64 @@ the Asynchrony operation.Trust issues.
 
 ## Promises
 
-Analogy
+### Analogy
+Java Restaurant Model
+One Cash Register
+Customers are queued to order
+Cashier takes the request gives it to worker, waits till the worker gives back the
+item and then serve the customer who is waiting for his order.
+Here until the first customer is served, other customers had to wait.
+
+To quickly serve requests, Java Restaurant has many Cash Registers with Cashiers.
+Customers are split between the Cash Registers
+Problem is this can lead to sharing of resources between CashRegisters.
+They need to lock and unlock the resource
+
+JS Restaurant model
+Java Restaurant Model
+One Cash Register
+Customers are queued to order
+The Cashier takes the request and gives it to worker. The Cashier gives a receipt back to the
+Customer and is ready to take requests from next customer.
+This way both Customer or Cashier wont wait until an order is received.
+When the order is done cashier serves the Customer.
+
+For Huge Customer queues, JS Restaurant wont add a new Cash Register instead it will increase the
+workers.
+
+This disallows the sharing of resources - Kitchen
+
+In callbacks way, Customer requests an order and provide details what to do with the order. Customer
+does not get any receipt or acknowledgement of what would happen to his Order.
+
+Promises provide receipt to the requesting customer. Now the customer can reason and do future tasks
+once he gets the actual order.
+
+Callbacks drawbacks
+	- callback hell - callback within callbacks
+	- Inversion of Control
+
+	
+### Promise Properties
+reject, resolve events
+immutable
+chainable
+composable
+resolve once
+
+### Promise in terms of event loop
+
+### Things to look
+passing params
+Thenable typing
+
+### Error handling
+
+### Best practice
+Promise patterns
+
+
+
 
 Two major deficiencies with using callbacks *express program Asynchrony* and *manage concurrency*  
 
