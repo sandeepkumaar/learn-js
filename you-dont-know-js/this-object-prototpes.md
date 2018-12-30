@@ -118,8 +118,10 @@ When a function invoked directly, `this` is *bound* to global scope
 ```
 var foo = function foo() {
   console.log(this.a);
+  console.log(this.x.a);
 }
 
+var a = 2;
 var x = {
     a: 2
 }
