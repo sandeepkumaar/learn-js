@@ -118,8 +118,10 @@ When a function invoked directly, `this` is *bound* to global scope
 ```
 var foo = function foo() {
   console.log(this.a);
+  console.log(this.x.a);
 }
 
+var a = 2;
 var x = {
     a: 2
 }
@@ -246,7 +248,7 @@ Here
   - map's lambda simple
 
 Since this pattern is used often, some built-in methods allows to
-pass the contexr which would internally bind the function
+pass the context which would internally bind the function
 
 ```
 // [].map(f, thisArg)
@@ -266,7 +268,7 @@ returns a function that is invoked with params
 ## `this` in arrow functions - acts as Lexical this
 We know that arrow functions are used as *lambdas*.
 And *lambdas* can be passed around with them carrying an implicit environment
-knows thru *closures*  
+known thru *closures*  
 These implicit environment corresponds to function's environment that returned it.
 We would prefer the *lambda* to only have the *context* from the *returning function or higher-order function*
 
@@ -274,33 +276,9 @@ Hence `this` inside a lambda will bind to the **Lexically** `this` in the *enclo
 Also, we cannot ovverride the bind made by the lambda through any means
 
 **Lexically** `this` means lambda should see the lexical this of the enclosing function
+
+Consider,
 ```
-
-function foo() {
-  return () => {
-    return this.a;
-  }
-}
-/--------Does-not-work--------/
-/*
-var lambda = () => {
-  return this.a;
-}
-function fooNonLexical() {
-  // lambda has no lexical scope
- return lambda
-}
-*/
-// calls the global scope even after binded
-/----------------------------/
-
-
-function fooLexical() {
-  var lambda = () => {
-    return this.a;
-  };
-  return lambda
-}
 
 var x = {
   a: 2
@@ -309,22 +287,57 @@ var y = {
   a: 3
 }
 
-var bar = foo.call(x); // bar holds the lambda returned by foo
+```
+Arrow function #1
+```
+
+function foo() {
+  return () => {
+    return this.a; //Lexical scope of lambda is "foo"
+  }
+}
+
+foo.call(x)();  //2
+foo.call(y)();  //3
+```
+
+Arrow function #2
+```
+function fooLexical() {
+  var lambda = () => {
+    return this.a;
+  };
+  return lambda
+}
+
 var bar = fooLexical.call(x); // bar holds the lambda returned by foo
 
-bar(); // 2
 bar.call(y) // 2, even though called with different context
+```
+
+Arrow function #3
+```
+var lambda = () => {
+  return this.a;  // Scope of lambda is now global
+}
+
+function fooNonLexical() {
+ return lambda; // lambda has no lexical scope , calls the global scope even after binded
+}
+
+lambda() || lambda.call(x); //undefined
+fooNonLexical()() || fooNonLexical.call(x)(); //undefined
 ```
 
 This is not true for *named functions or anonymous functions*
 ```
-function foo() {
+function fooNamed() {
   return function() {
     return this.a;
   }
 }
 
-var bar = foo.call(x)
+var bar = fooNamed.call(x)
 
 bar() // undefined global
 bar.call(y) // 3 y's context
