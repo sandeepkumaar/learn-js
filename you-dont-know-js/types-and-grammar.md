@@ -87,7 +87,7 @@ when **typeOf** returns **undefined** it means
   - identifier is undefined
   - identifier is undeclared
 
-Note: identifier can hold any value types, from 
+Note: identifier can hold any value types, from
 
 undefined
   - non-declared

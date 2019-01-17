@@ -1,7 +1,7 @@
 ## Summary
 
 Everything in JS in objects. This allows the language to
-pass aroud anything
+pass around anything
 
 Function as objects
 Built-in Functions
@@ -33,11 +33,23 @@ Property Descriptors
 
 
 
-class
+class in general // copies
 inheritance
 polymorphism
 
 behaviour // interfaces
+
+
+Prototypes
+
+Behavior delegation Pattern
+// delegate prototypes
+// prototype cloning
+// Flyweight Pattern
+// Object creation
+// factories
+
+Modularity // encapuslation // interface
 
 
 
