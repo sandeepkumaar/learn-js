@@ -30,6 +30,8 @@ typeof null === "object"; // true // bug in js
 >null is the only primitive value that is "falsy" (aka false-like; see Chapter 4)
 >but that also returns "object" from the typeof check.
 
+#### Note
+> null is sometimes referred to as an object type, but this misconception stems from a bug in the language which causes typeof null to return the string "object" incorrectly (and confusingly). In fact, null is its own primitive type.
 
 ### Special objects
   - function // non-primitive //object

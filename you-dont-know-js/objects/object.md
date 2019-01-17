@@ -1,5 +1,84 @@
 ## Summary
 
+// programming in js
+
+> js is pass by value
+
+Javascript Object System
+  - Prototypal inheritance
+  - Dynamic object extension
+  - Closures
+
+Everything in JS are objects
+Primitive types are also treated as objects- Autoboxed when using dot notation
+
+Classical Inheritance
+
+Program to an interface, not an implementation
+Favour object composition over class inheritance
+
+Tight coupling
+  - child is coupled to parent
+  - child codes to parents implementation
+
+Inflexible Heirachies
+Heirachies acheived thru inheritance are not flexible and does not fit all use-cases
+
+Multiple Inheritance
+
+Brittle Architecture
+Refactor
+
+Gorilla banana :
+copy of the parent
+
+
+Constructing object with new keyword
+How to construct objects in js - object literal
+Singleton in objects
+
+
+- Lambdas and closures
+- object literal
+- Dyanmic object extension
+- Prototypes
+- Factories
+- Fluent apis // pure, chainable methods
+
+
+Protoypes // object linking
+  - Delagate to a prototype
+  - Clone a prototype
+
+
+Object creation
+Encapsulation, closures, Factory
+
+Stamps
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Everything in JS in objects. This allows the language to
 pass around anything
 
@@ -33,11 +112,16 @@ Property Descriptors
 
 
 
+<<<<<<< HEAD
 class in general // copies
+=======
+class // blue prints
+>>>>>>> origin/master
 inheritance
 polymorphism
 
-behaviour // interfaces
+behaviour // interfaces // polymorphism
+
 
 
 Prototypes
@@ -53,7 +137,9 @@ Modularity // encapuslation // interface
 
 
 
+Protoptypes
 
+Behaviour delegation
 
 
 
