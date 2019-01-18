@@ -1,4 +1,54 @@
 ## Summary
+JS has the most flexible and expressive *object* system with
+- Prototypal inheritance
+- Dynamic object extension
+- Closures
+
+
+## Creating Objects
+Objects in js are created through
+  - literal form
+  - Constructor form // not preferred
+
+The above *form* along with the help of *functions* we can
+create as many objects by invoking the function  
+We ll see how  
+
+### literal object aka singleton
+```
+var employee = {
+  name: "sandeep"
+}
+```
+To create many objects of that construct, we use functions
+
+> wkt, local variables/bindings in a function are recreated every time when it is called.
+
+```
+function createEmployee(_name) {
+  return {
+    name: _name
+  }
+}
+
+var emp1 = createEmployee("sandeep");
+var emp2 = createEmployee("navin");
+```
+
+### Construtor form
+```
+var employee = new Object();
+employee.name = sandeep;
+```
+
+```
+function Employee(_name) {
+  this.name = _name;
+}
+
+var emp1 = new Employee("sandeep")
+var emp2 = new Employee("navin")
+```
 
 // programming in js
 

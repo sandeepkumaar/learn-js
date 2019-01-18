@@ -345,9 +345,3 @@ var bar = fooNamed.call(x)
 bar() // undefined global
 bar.call(y) // 3 y's context
 ```
-
-
-### objects
-### Class Objects
-### Prototypes
-### Behaviour delegation
