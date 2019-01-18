@@ -10,8 +10,14 @@ skips most of the nuances associated with JS scopes.
 - treating functional expression as values
 - closures
 
+
+## Context
+- Variable - Identifier - Value in programming language
+- Declaration vs Definition // programming language
+- Statement vs Expressions // programming language
+
 ### What is a scope?
-See Variable - Identifier - Value in programming language
+
 
 Definition - Wiki
 >In computer programming, the scope of a name binding – an association of a name to an entity, such as a variable – is the region of a computer program where the binding is valid: where the name can be used to refer to the entity. Such a region is referred to as a scope block. In other parts of the program the name may refer to a different entity (it may have a different binding), or to nothing at all (it may be unbound).
@@ -124,19 +130,25 @@ var, let, const can be seen as order of strictness to the above requirements
   - block scope
   - immutable // declared and defined only once
 
-> See let, const behaviour with hoisting
+> See let, const behaviour with hoisting  
 > if const holds the reference of an object. The object properties can
 be mutated.
 
 
 ### Scope of a closure
-**Closure** is a *record/structure* storing a *function* together with an *environment*  - wiki
+**Closure** is a *record/structure* storing a **function** together with an **environment**  - wiki
 
 This happens when a function returns another function.
 The environment is variables from the enclosing function.
 or *the environment is the enclosing functions environment*
 
 the returning function/s has the ability to access the environment
+
+
+>local variables/bindings in a function are recreated every time when it is called.
+
+This allows us to get different environments for the same functionality - Important
+
 
 ```
 function environment(custom) {

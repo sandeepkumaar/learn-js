@@ -266,6 +266,9 @@ returns a function that is invoked with params
 
 
 ## `this` in arrow functions - acts as Lexical this
+
+[see: function/arrow function ](./functions/function.md#arrow-functions)
+
 We know that arrow functions are used as *lambdas*.
 And *lambdas* can be passed around with them carrying an implicit environment
 known thru *closures*  
@@ -273,7 +276,7 @@ These implicit environment corresponds to function's environment that returned i
 We would prefer the *lambda* to only have the *context* from the *returning function or higher-order function*
 
 Hence `this` inside a lambda will bind to the **Lexically** `this` in the *enclosing function/ higher-order function*  
-Also, we cannot ovverride the bind made by the lambda through any means
+Also, we cannot override the bind made by the lambda through any means
 
 **Lexically** `this` means lambda should see the lexical this of the enclosing function
 
