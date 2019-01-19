@@ -1,3 +1,14 @@
+## Summary
+
+> Everything in JavaScript is an **object**, *implicitly constructed*
+by *built-in* constructor functions
+
+A function created with a *function declaration/expression*
+is a **Function object** and has all the properties, methods
+and behavior of Function objects - mdn
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function#Description
+
 ## Functions as Building Blocks
 
 Refer: Mathematical functions from ..programming-language

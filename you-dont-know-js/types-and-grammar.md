@@ -97,3 +97,45 @@ undefined
 Safety guard
   - handles gracefully
   - default/ provided impl for a utility - to check whether a program is available
+
+
+
+///
+## `typeOf` operator
+Returns the **built-in** type of the operand.Any complex
+types are boiled down to built-in type
+returns a string
+
+## `instanceOf` operator
+checks whether the *object's prototype chain* has the
+specified **constructor function**
+
+```
+function Foo(_name) {
+  this.name = _name;
+}
+var x = new Foo("sandeep")
+
+// `new` make `Foo` a constructor function
+
+x instanceOf Foo // true
+
+// checks whether `Foo` reference is available in the
+`constructor` property
+```
+
+
+## Built-in Functions
+
+- String
+- Number
+- Boolean
+- Object
+- Function
+- Array
+- Date
+- RegExp
+- Error
+
+These are **Constructor function** that are used to create objects with the
+help of `new` operator.

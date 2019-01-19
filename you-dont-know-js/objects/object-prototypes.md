@@ -1,10 +1,10 @@
 basic of prototypes
 
-shadowing properties
+shadowing properties // prototypal inheritance
 
 lookup of properies
 
-linking objects
+linking objects // object extension
 
 prototypal inheritance
 
