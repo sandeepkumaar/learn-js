@@ -95,6 +95,9 @@ var emp1 = createEmployee("sandeep");
 var emp2 = createEmployee("navin");
 ```
 
+## Object properties
+hasOwnProperty
+getPrototypeOf
 
 ## Property Descriptors
 // todo
