@@ -1,5 +1,9 @@
 ## Summary
 
+Unlike Java, where everything is *class*. In JS everything is
+objects.
+Class is the building block. Object is the building block.
+
 
 >A prototype is an **early sample**, model, or release of a product built to test a concept or process or to act as **a thing to be replicated** or **learned from** - Wiki
 
@@ -20,12 +24,23 @@ Objective of prototypes in programming language is
 - act as a reference with basic features
 - code reuse
 
-> Unlike `class` which is a **blueprint**, `prototypes` are **instances**
+> Unlike `class` which is a **blueprint**, `prototypes` are **instances/objects**
+
+
+## Basic of prototypes
+prototype is simply an object.
+
+### Assigning a prototype
+- constructor function //
+- object composition  // preferred
+
+
+#### Object composition
 
 
 
 
-basic of prototypes
+
 
 shadowing properties // prototypal inheritance
 
