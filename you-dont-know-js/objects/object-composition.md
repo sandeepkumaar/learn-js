@@ -47,5 +47,26 @@ JS has another compositional technique. *dynamic object extension* aka Concatena
 
 
 ### Aggregation
+Aggregation is when an object is formed from an enumerable collection of subobjects
+
+multiple objects (may be of different types) are *aggregated* for a process/operation to be performed
+on all of them.
+Eg: Arrays, Maps, Sets, Graphs, Trees, DOM nodes, UI components with child
+```
+let x = [1,2,3]
+
+```
 ### Concatenation
+Concatenation is when an object is formed by adding new properties to an *existing object*.
+
+Eg: State reducers, functional mixins
+forming json objects, immutable bigdata  
+```
+Object.assign()
+```
+
+
 ### Delegation
+Delegation is when an object forwards or delegates to another object.
+
+A common instance shared by all othe objects and when updated the delegating objects are also updated
