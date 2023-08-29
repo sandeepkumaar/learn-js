@@ -1,11 +1,10 @@
 ## Summary
 
-Unlike Java, where everything is *class*. In JS everything is
-objects.
+Unlike Java, where everything is *class*. In JS everything is objects.
 Class is the building block. Object is the building block.
 
 
->A prototype is an **early sample**, model, or release of a product built to test a concept or process or to act as **a thing to be replicated** or **learned from** - Wiki
+> A prototype is an **early sample**, model, or release of a product built to test a concept or process or to act as **a thing to be replicated** or **learned from** - Wiki
 
 To note:
 - early sample        // doesn't do much, but has all features(props,behaviours)
@@ -36,20 +35,3 @@ prototype is simply an object.
 
 
 #### Object composition
-
-
-
-
-
-
-shadowing properties // prototypal inheritance
-
-lookup of properies
-
-linking objects // object extension
-
-prototypal inheritance
-
-
-object.assign()
-object.create()

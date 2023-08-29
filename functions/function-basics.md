@@ -29,7 +29,7 @@ passed around.
 
 > Since function are objects, they are stored in heap??
 
->local variables/bindings in a function are recreated every time when it is called.
+> local variables/bindings in a function are recreated every time when it is called.
 
 
 ## How to define a function ?
@@ -172,18 +172,3 @@ higher-order function. Period.
 [See here](../scope/scopes-and-hoisting.md)
 
 
-## Method/Function Design
-- Named parameters
-- Function polymorphism
-- Generics and Collections
-- Method Chaining and Fluent APIS
-
-## Functional Programming
-pure functions
-### Composing software
-
-
-//
-
-
-Polymorphic code can work with values of different shapes, as long as they support the interface it expects.
