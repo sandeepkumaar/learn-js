@@ -16,11 +16,11 @@ polymorphism ?
 - Method Chaining and Fluent APIS
 
 
-function signature
+## function signature
 
-Default parameters
+## Default parameters
 
-computed defaults
+## computed defaults
 
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters

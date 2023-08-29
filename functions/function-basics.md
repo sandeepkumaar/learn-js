@@ -168,7 +168,36 @@ Any function that takes a lambda or returns a lambda or does both is a
 higher-order function. Period.
 
 
-## Function scope
-[See here](../scope/scopes-and-hoisting.md)
+## Function arguments object, default params, rest params, 
+### Arguments Object
+```
+let f = function() {
+  console.log(arguments);
+  return arguments;
+};
+f() // returns Arguments{} object
+```
+Arguments Object is like an array-like special object. 
+- Values are accessed like arary indexes ie. arguments[0] returns first arg
+- They can be converted to normal arrays through [...arguments] or Array.from(arguments);
+- It has @@Iterator which makes it *iterable* via iterating statements. check iterator for more
+
+### Default params
+```
+let f = function({a= 1, b= 1} ={}) {
+  return { a, b } 
+}
+```
+### Rest params
+```
+let f = function(...rest) {
+  return rest;
+};
+f(1, 2) // return [1, 2]
+```
+> Note: if you need args in array structure use rest params, if you need it as iterator use arguments.
+> Note: arguments object is not available to arrow functions. also it doesnt care about default params if its passed. 
+> it only has the values thats the function is called with.
+
 
 

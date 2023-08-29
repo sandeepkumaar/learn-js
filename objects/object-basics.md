@@ -62,7 +62,7 @@ wkt, *constructor function reference* is added by the `new` operator.
 For literals, they are *implicitly* created from **Object constructor function**
 Hence they have *Object function ref*
 
-
+> Note: when Constructors are called without `new`, `this` will point to global scope.
 
 
 
