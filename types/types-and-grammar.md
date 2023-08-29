@@ -1,6 +1,5 @@
 # Types and Grammar
 
-
 ## Built-in Types
 
 - null      // primitive
@@ -8,8 +7,8 @@
 - boolean   // primitive
 - number    // primitive
 - string    // primitive
-- object    // non-primitive
 - symbol    // primitive
+- object    // non-primitive
 
 
 ```
@@ -85,7 +84,7 @@ The above behaviour is treated as a *Safe Guard* rather than a bug/undesired beh
 
 We can leverage the above behaviour to handle certain cases
 
-when **typeOf** returns **undefined** it means
+when **typeof** returns **undefined** it means
   - identifier is undefined
   - identifier is undeclared
 
@@ -101,7 +100,7 @@ Safety guard
 
 
 ///
-## `typeOf` operator
+## `typeof` operator
 Returns the **built-in** type of the operand.Any complex
 types are boiled down to built-in type
 returns a string
@@ -137,5 +136,23 @@ x instanceOf Foo // true
 - RegExp
 - Error
 
-These are **Constructor function** that are used to create objects with the
-help of `new` operator.
+These are **Constructor function** that are used to create objects with the help of `new` operator.  
+
+When String, Number, Boolean primitive functions are called with `new` they return `object` type. 
+```
+let primitiveBool = Boolean(0); // false
+let objectBool = new Boolean(0);
+objectBool.valueOf() // false
+objectBoo.toString() // "false"
+```
+
+## JavaScript Primitive vs. Reference Values
+- primitive values: pass by value/copy (stack memory)
+- objects : pass by reference (Heap memory) 
+
+ref: https://www.javascripttutorial.net/javascript-primitive-vs-reference-values/
+
+> Note: Since Objects are pass by reference, we should careful with **mutations**  which can lead to undeterministic results
+
+
+
