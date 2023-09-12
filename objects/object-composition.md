@@ -70,3 +70,39 @@ Object.assign()
 Delegation is when an object forwards or delegates to another object.
 
 A common instance shared by all othe objects and when updated the delegating objects are also updated
+
+This is done throught prototype inheritance
+```
+let proto = {
+  name: 'sandeeep'
+}
+let person = Object.assingn(Object.create(proto), { age: 24});
+
+```
+
+#### Composing through Factories
+Generally Instances are created with constructor `new` 
+
+creating instances via constructor is programming to implementation
+
+Eg: 
+
+```
+// player proto is inherited
+let human = new HumanPlayer();
+let bot = new BotPlayer();
+```
+Instead put/encapsulate the implementations to an interface via Factories
+
+
+```
+let human = createPlayer('', type='human');
+let bot = createPlayer('');
+```
+Inside the factory functions, object are created through the composition techniques like 
+- object.assign
+- object.create
+- object.freeze
+
+
+

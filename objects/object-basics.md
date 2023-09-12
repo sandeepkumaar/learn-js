@@ -103,4 +103,13 @@ getPrototypeOf
 // todo
 
 
+## Prototype Inheritanc
+```
+let proto = {
+  name: 'sandeeep'
+}
+let person = Object.assingn(Object.create(proto), { age: 24});
+
+let person
+```
 
