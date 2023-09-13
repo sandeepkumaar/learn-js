@@ -36,7 +36,7 @@ var emp2 = new Employee("navin")
 Constructor form, creates a prototype object with the *constructor function ref*
 and attaches it as the *immediate* prototype.
 
-![Constructor prototpes](../../snaps/constructor-proto.png)
+![Constructor prototpes](./snaps/constructor-proto.png)
 
 
 prototypes are available under `__proto__`  
@@ -44,7 +44,7 @@ prototypes are available under `__proto__`
 
 We can add properties to the immediate prototype as shown
 
-![Constructor prototpes](../../snaps/constructor-proto-property.png)
+![Constructor prototpes](./snaps/constructor-proto-property.png)
 
 #### Note #1:
 assigning a new prototype wont work, it fails silently. This behaviour
@@ -103,13 +103,12 @@ getPrototypeOf
 // todo
 
 
-## Prototype Inheritanc
+## Prototype Inheritance
 ```
 let proto = {
   name: 'sandeeep'
 }
 let person = Object.assingn(Object.create(proto), { age: 24});
 
-let person
 ```
 
