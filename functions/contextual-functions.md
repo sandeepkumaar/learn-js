@@ -1,8 +1,8 @@
 # Objective
 `this` and its behaviours with functions  
-How they can be used for Unix style programming  
-Gotchas  
-Best practices
+- How they can be used for Unix style programming  
+- Gotchas  
+- Best practices
 
 
 ```
@@ -62,7 +62,7 @@ toUpperCaseThis.call(student_2) // NAVIN
 ```
 
 ## What is **`this`** in JS functions ?
-**`this`** inside a function represents the *context* on which the function definition may operate  
+**`this`** inside a function represents the *context* on which the function definition may operate    
 **context** is the object that invokes the function.Period
 ```
 obj.foo() // foo has obj's context
@@ -85,14 +85,7 @@ self scope is useful
   - for referencing other properties in the scope/instance
   - self in functions can be used for recursion
 
-//TODO
-
-#### Note : functions are special objects - ref: Types and grammar
-When we say objects it can have properties. Hence functions can have properties  
-Functions are used to construct instances.  
-Programmers use **`this`** to refer to the instance scope. But what **`this`** really do is takes the *context* from the *invoking object*  
-// TODO : how `this` behaves in function constructor
-
+`this` in **Arrow functions** refers to the lexical scope/instance
 
 ## How **`this`** in JS is useful
 Typically a function takes *context* and other variables from the *arguments* its passed.  

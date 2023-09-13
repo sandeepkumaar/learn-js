@@ -1,3 +1,0 @@
-pure functions
-immutability
-function composition

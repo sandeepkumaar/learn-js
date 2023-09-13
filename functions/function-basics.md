@@ -59,7 +59,10 @@ Prefer Named function expression over anonymous functions
 advantages
   - debugging - stack trace
   - recursive calls
-
+```
+const add = function(a, b) { return a + b}
+const add = (a, b) => { return a + b }
+```
 
 ## Function Representations
 Functions in JS can represent the following *behaviours*  
