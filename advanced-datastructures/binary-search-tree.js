@@ -1,3 +1,19 @@
+/**
+ * Traversing logic
+*/
+function traverse(node, value) {
+  if(node.value == value) {
+    return node/true
+  };
+  if(value < node.value) {
+    node.left = traverse(node.left, value);
+  } else {
+    node.right = traverse(node.right, value);
+  }
+
+
+}
+
 
 // Node constructor function
 function TreeNode(value) {

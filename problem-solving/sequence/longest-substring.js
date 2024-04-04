@@ -37,13 +37,3 @@ var lengthOfLongestSubstring = function(str) {
 console.log(lengthOfLongestSubstring('sandeep'));
 
 
-function groupSequence(str, fn) {
-  let sets = []; // groups. could be a Map/Object
-  let set = new Set(); // group
-
-  // iterator
-  for(const s of str) {
-    
-  };
-  return sets;
-}

@@ -4,6 +4,16 @@
  * one having the element, another doesn't
 */
 
+function logic(arr) {
+  while (left <= right) {
+    let middle = Math.floor((left + right)/2);
+    if(arr[middle] === value) {
+      result = middle;
+      return result
+    };
+  }
+}
+
 import getComparator from './comparator.js';
 
 
