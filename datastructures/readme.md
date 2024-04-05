@@ -1,18 +1,29 @@
 ## Iterators
+Iterable : object containing sequence of values
+Iterator : method on the iterable which helps to move the next node in the iterable. simliar to linkedList. 
+It returns a object with `value, next()` which is used to iterate
 
-Iterator is a construct that is similar to linkedList having a next() method
 ```
 let iteratorNode = {
   next(),
   value,
-  // based on Iterables
-  index,
+  index, // based on Iterables index will be availble or not
 }
 ```
 
-When a Iterator is defined for a Object/Array it becomes Iterable. It should implement `@@iterator`
-
-We dont need to custom iterables. we can use built-in Iterables like 
+Object/Array becomes iterable when it implements `Symbol.iterator] iterator
+```
+let iterable = {
+  // custom iterator
+  [Symbol.iterator]() {
+    return {
+      value,
+      next
+    }
+  }
+}
+```
+We already have builtin iterables
 - Array
 - Set
 - Object
@@ -23,42 +34,14 @@ We dont need to custom iterables. we can use built-in Iterables like
 - regexp,
 - Generator
 
-> Note: Construct for iterating all the nodes in the iterable is **for value of iterator**
+> Note: 2 ways to iterate over the elements
+- Calling next()
+- Using for..of loop which internally calls next()
 
-## Array
-By default Array is an iterable.
-```
-var x = [1, 2, 3];
-for(const item of x) {
-  console.log(item); // 1, 2, 3
-}
-```
-> Note: Difference between Array Iterator, Set Iterator, Map Iterator, 
-> Iterator Object is lazy initialized. meaning it gets the value only when we call the next()
+> Note: Difference between normal array methods vs itertors
+> Iterator Object is *lazy initialized*. meaning it gets the value only when we call the next()
 > for...of constructor calls the next function of iterator for each loop.
 > unlike array methods like filter, map, they create a new array and run to completion. 
-> if are creating [] array and pushing data inside for..of then its similar to [].map().filter()
-
-
-### Array.values() or Array[Symbol.iterator]()
-Both are same. return an iterator having
-```
-{ 
-  next(),
-  value,
-}
-```
-### Array.keys() 
-{
-  next(),
-  value, // index(key)
-}
-
-### Array.entries()
-{
-  next(),
-  [index, value]
-}
 
 ### Set
 Set is used when the there are more mutations happening. It takes a Unique values, Order is maintained, does not have index.
