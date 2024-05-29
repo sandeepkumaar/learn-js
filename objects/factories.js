@@ -31,3 +31,9 @@ const createPerson  = function(name, age, city) {
 
   return Object.freeze(Object.assign(Object.create(proto), o));
 }
+
+
+// Explain 
+// prototype composition - changes to child is not reflected in parent
+// prototype override
+// access prototype properties from child

@@ -27,7 +27,6 @@ function createLinkedList(arr=[]) {
   // Function to find node at a given index
   let findAt = function (index) {
     let currentIndex = 0;
-    console.log(this);
     for (const node of this) {
       if (currentIndex === index) {
         return node;

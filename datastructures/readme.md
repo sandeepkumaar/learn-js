@@ -1,27 +1,13 @@
 ## Iterators
-Iterable : object containing sequence of values
-Iterator : method on the iterable which helps to move the next node in the iterable. simliar to linkedList. 
-It returns a object with `value, next()` which is used to iterate
+- Iterable is an object containing the list which implements the Iterator method
+- Iterator method is a function that returns an object following Iterator protocol
 
-```
-let iteratorNode = {
-  next(),
-  value,
-  index, // based on Iterables index will be availble or not
-}
-```
+- Iterator protocol is an object implementing below methods which returns IteratorResult
+- next: () => { value: any, done: boolean } // IteratorResult
+- [return]: (value) => {value: value, done: true} - caller tells to stop the iteration with return value
+- [throw]: (exeption) => {value: any, done: true} - caller tells there is an exception
 
-Object/Array becomes iterable when it implements `Symbol.iterator] iterator
-```
-let iterable = {
-  // custom iterator
-  [Symbol.iterator]() {
-    return {
-      value,
-      next
-    }
-  }
-}
+check js for examples
 ```
 We already have builtin iterables
 - Array
