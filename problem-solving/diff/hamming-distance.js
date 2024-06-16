@@ -23,4 +23,4 @@ function stringDiff(str1, str2) {
   
 };
 
-console.log(stringDiff(str1, str2));
+console.log(str1, str2, stringDiff(str1, str2));

@@ -14,12 +14,16 @@ let person = {
  * handler is an object which has traps. 
  * traps are nothing but functions which allows us to intecept Target for various actions
  * Eg: get, set, has(): in operator
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy#object_internal_methods
 */
 let proxyPerson = new Proxy(person, {
   get: function(target, property){
     if(property ==='name') {
       //return target[property].toUpperCase();
-      return Reflect.get(...arguments).toUpperCase();
+      let value = Reflect.get(target, property)
+      return value.toUpperCase()
+      // or in shortcut
+      //return Reflect.get(...arguments).toUpperCase();
     };
     //return target[property]; 
     // instead of implementing default Target behaviour, we use the Reflect api to follow.

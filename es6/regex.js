@@ -30,6 +30,8 @@
 
 /**
  * Groups and backreferences
+ * //g - global search
+ * //m - multiline search each line is treated as a separate input - changes ^, $ 
 */
 
 const personList = `First_Name: John, Last_Name: Doe
@@ -65,8 +67,8 @@ for (const match of personList.matchAll(regexpNames)) {
 'aba'.match(/a/); // [a, index: 0, input: abc, group: undefined]
 let regexExpressionStringIterator = 'aba'.matchAll(/a/g); // global flag is required for matchAll. 
 
-'aba'.replace(/a/g); // xbx
-'aba'.replace(/a/); // xba
+'aba'.replace(/a/g, 'x'); // xbx
+'aba'.replace(/a/, 'x'); // xba
 
 'aba'.search(/a/g); // 0
 'aba'.search(/a/); // 0 - returns the first match index. else -1
