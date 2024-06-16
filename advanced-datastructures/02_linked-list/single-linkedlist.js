@@ -1,11 +1,13 @@
 
 let proto = {
   search(value) {
+    let index = 0;
     let compare = this.compare;
     for (let node of this) {
       if(compare(node.value, value) == 0) {
-        return node;
+        return index;
       };
+      index++;
     }
     return null;
   },
@@ -44,11 +46,11 @@ let proto = {
   },
 
   insert(value, index) {
-    // prepend
+    // unshift
     if(this.head === null || index == 0) {
       return this.unshift(value);
     }
-    // append
+    // push
     if(index == undefined || index > this.size) {
       return this.push(value);
     };
@@ -62,7 +64,44 @@ let proto = {
     this.size++;
     return node;
   },
-  //delete: () => {},
+  shift() {
+    if(this.head == null) return null;
+    let node = this.head;
+    this.head = this.head.next;
+    this.size--;
+    return node;
+  },
+  pop() {
+    if(this.tail == null) return null;
+    let prevNode = this.at(this.size - 2)
+    let currentNode = prevNode.next;
+    prevNode.next = null
+    this.size--;
+    return currentNode;
+  },
+  delete(value) {
+    let compare = this.compare;
+    if(this.head == null) return null;
+    // shift
+    if(compare(this.head.value, value) == 0) return this.shift(); 
+    // pop
+    if(compare(this.tail.value, value) == 0) return this.pop();
+
+    let prevNode = null
+    let currentNode = null;
+    for(let node of this) {
+      if(compare(node.value, value) == 0) {
+        currentNode = node;
+        break;
+      };
+      prevNode = node;
+    };
+
+    //// delete any
+    prevNode.next = currentNode.next;
+    this.size--;
+    return currentNode;
+  },
   //reverse: () => {},
   //[Symbol.iterator]() {
   //  let currentNode = this.head;
