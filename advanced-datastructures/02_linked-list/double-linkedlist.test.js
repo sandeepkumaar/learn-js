@@ -23,13 +23,13 @@ test('iterable', async(t) => {
   })
   await t.test('iterate reverse', () => {
     let linkedList = createLinkedList(['a', 'b', 'c'], compare);
-    let arr = toArray(linkedList.reverse());
+    let arr = toArray(linkedList.reverseIterator());
     assert.deepEqual(arr, ['c', 'b', 'a'])
   });
 })
 test('search', () => {
   let linkedList = createLinkedList(['a', 'b', 'c'], compare);
-  let index = linkedList.search('b');
+  let {index, node } = linkedList.search('b');
   assert.equal(index, 1);
 })
 
@@ -41,7 +41,6 @@ test('at', () => {
   assert.equal(linkedList.at(-1)?.value, 'c')
 });
 
-/*
 test('unshift-shift', async t => {
   await t.test('unshift', () => {
     // no head
@@ -53,6 +52,8 @@ test('unshift-shift', async t => {
     linkedList.unshift('b');
     let arr = toArray(linkedList);
     assert.deepEqual(arr, ['b', 'a']);
+    let revArr = toArray(linkedList.reverseIterator());
+    assert.deepEqual(revArr, ['a', 'b']);
     assert.equal(linkedList.size, 2);
   })
   await t.test('shift', () => {
@@ -60,31 +61,35 @@ test('unshift-shift', async t => {
     linkedList.unshift('a');
     let node = linkedList.shift('a');
     assert.equal(node.value, 'a');
+    assert.deepEqual(toArray(linkedList.reverseIterator()), []);
     assert.equal(linkedList.size, 0);
   })
 
 })
 
 test('insert', async (t) => {
-  await t.test('no head', () => {
+  await t.test('unshift: no head', () => {
     let linkedList = createLinkedList();
     linkedList.insert('c');
     assert.equal(linkedList.size, 1)
+    assert.deepEqual(toArray(linkedList.reverseIterator()), ['c']);
     assert.equal(linkedList.at(0)?.value, 'c')
   })
-  await t.test('preprend', () => {
+  await t.test('unshift', () => {
     let linkedList = createLinkedList(['a']);
     linkedList.insert('c', 0);
     assert.equal(linkedList.size, 2)
     assert.deepEqual(toArray(linkedList), ['c', 'a'])
+    assert.deepEqual(toArray(linkedList.reverseIterator()), ['a', 'c']);
   })
-  await t.test('append', () => {
+  await t.test('push', () => {
     let linkedList = createLinkedList();
-    linkedList.insert('a');
+    linkedList.insert('a'); // unshift
     assert.equal(linkedList.size, 1);
     assert.equal(linkedList.at(0)?.value, 'a');
     linkedList.insert('b', 100);
     assert.equal(linkedList.size, 2);
+    assert.deepEqual(toArray(linkedList.reverseIterator()), ['b', 'a']);
     assert.equal(linkedList.at(1)?.value, 'b');
 
   })
@@ -93,6 +98,38 @@ test('insert', async (t) => {
     let linkedList = createLinkedList(['a', 'b']);
     linkedList.insert('c', 1);
     assert.deepEqual(toArray(linkedList), ['a', 'c', 'b']);
+    assert.deepEqual(toArray(linkedList.reverseIterator()), ['b', 'c', 'a']);
+  })
+});
+
+
+test('push-pop', async (t) => {
+  await t.test('push', () => {
+    let linkedList = createLinkedList();
+    let node = linkedList.push('a')
+    assert.equal(node.value, 'a');
+    linkedList.push('b')
+    linkedList.push('c')
+    assert.equal(linkedList.size, 3);
+    let arr = toArray(linkedList);
+    assert.deepEqual(arr, ['a', 'b', 'c']);
+    assert.deepEqual(toArray(linkedList.reverseIterator()), ['c', 'b', 'a']);
+  });
+  await t.test('pop', () => {
+    let linkedList = createLinkedList();
+    // 
+    let value = linkedList.pop();
+    assert.equal(value, null);
+    // 
+    linkedList.push('a');
+    linkedList.push('b');
+    let node = linkedList.pop();
+    assert.equal(node.value, 'b');
+    assert.equal(linkedList.size, 1);
+    // 
+    let arr = toArray(linkedList);
+    assert.deepEqual(arr, ['a']);
+    assert.deepEqual(toArray(linkedList.reverseIterator()), ['a']);
   })
 });
 
@@ -109,6 +146,7 @@ test('delete', async(t) => {
     assert.deepEqual(node1.value, 'a');
     assert.deepEqual(linkedList.size, 2);
     assert.deepEqual(toArray(linkedList), ['b', 'c']);
+    assert.deepEqual(toArray(linkedList.reverseIterator()), ['c', 'b']);
 
   })
   await t.test('pop', () => {
@@ -117,6 +155,7 @@ test('delete', async(t) => {
     assert.deepEqual(node2.value, 'c');
     assert.deepEqual(linkedList.size, 2);
     assert.deepEqual(toArray(linkedList), ['a', 'b']);
+    assert.deepEqual(toArray(linkedList.reverseIterator()), ['b', 'a']);
   })
   await t.test('deleteAny', () => {
     let linkedList = createLinkedList(['a','b', 'c'], compare);
@@ -124,37 +163,9 @@ test('delete', async(t) => {
     assert.deepEqual(node2.value, 'b');
     assert.deepEqual(linkedList.size, 2);
     assert.deepEqual(toArray(linkedList), ['a', 'c']);
+    assert.deepEqual(toArray(linkedList.reverseIterator()), ['c', 'a']);
   })
 })
-
-
-test('push-pop', async (t) => {
-  await t.test('push', () => {
-    let linkedList = createLinkedList();
-    let node = linkedList.push('a')
-    assert.equal(node.value, 'a');
-    linkedList.push('b')
-    linkedList.push('c')
-    assert.equal(linkedList.size, 3);
-    let arr = toArray(linkedList);
-    assert.deepEqual(arr, ['a', 'b', 'c']);
-  });
-  await t.test('pop', () => {
-    let linkedList = createLinkedList();
-    // 
-    let value = linkedList.pop();
-    assert.equal(value, null);
-    // 
-    linkedList.push('a');
-    linkedList.push('b');
-    let node = linkedList.pop();
-    assert.equal(node.value, 'b');
-    assert.equal(linkedList.size, 1);
-    // 
-    let arr = toArray(linkedList);
-    assert.deepEqual(arr, ['a']);
-  })
-});
 
 test('reverse', async(t) => {
   await t.test('null head', () => {
@@ -173,8 +184,8 @@ test('reverse', async(t) => {
     let reverse = linkedList.reverse();
     assert.deepEqual(toArray(reverse), ['c', 'b', 'a']);
     assert.deepEqual(toArray(linkedList), ['c', 'b', 'a']);
+    assert.deepEqual(toArray(reverse.reverseIterator()), ['a', 'b', 'c']);
   })
 })
-*/
 
 

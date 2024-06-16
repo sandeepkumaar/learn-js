@@ -5,7 +5,7 @@ const proto = {
     let compare = this.compare;
     for (let node of this) {
       if(compare(node.value, value) == 0) {
-        return index;
+        return { index, node };
       };
       index++;
     }
@@ -25,7 +25,12 @@ const proto = {
 
   // prepend
   unshift(value) {
-    let node = createNode(value, this.head);
+    let node = createNode(value, this.head, null);
+    // if there is already a head. set its prev to node.
+    // for head == null  just set the new node
+    if(this.head) {
+      this.head.prev = node;
+    }
     this.head = node;
     if(this.tail == null) {
       this.tail = node;
@@ -38,7 +43,7 @@ const proto = {
     if(this.head == null) {
       return this.unshift(value);
     };
-    const node = createNode(value, null)
+    const node = createNode(value, null, this.tail)
     this.tail.next = node;
     this.tail = node;
     this.size++;
@@ -56,26 +61,34 @@ const proto = {
     };
 
     // insert at 
-    let node = createNode(value);
-    let prevNode = this.at(index - 1)
-    let currentNode = prevNode.next;
+    let currentNode = this.at(index)
+    let prevNode = currentNode.prev;
+    let node = createNode(value, currentNode, prevNode);
     prevNode.next = node;
-    node.next = currentNode;
+    currentNode.prev = node;
     this.size++;
     return node;
   },
   shift() {
     if(this.head == null) return null;
     let node = this.head;
-    this.head = this.head.next;
+    // only one node
+    if(this.head.next) {
+      this.head = this.head.next;
+      this.head.prev = null;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
     this.size--;
     return node;
   },
   pop() {
     if(this.tail == null) return null;
-    let prevNode = this.at(this.size - 2)
-    let currentNode = prevNode.next;
-    prevNode.next = null
+    let currentNode = this.tail;
+    let prevNode = currentNode.prev;
+    prevNode.next = null;
+    this.tail = prevNode;
     this.size--;
     return currentNode;
   },
@@ -87,29 +100,26 @@ const proto = {
     // pop
     if(compare(this.tail.value, value) == 0) return this.pop();
 
-    let prevNode = null
-    let currentNode = null;
-    for(let node of this) {
-      if(compare(node.value, value) == 0) {
-        currentNode = node;
-        break;
-      };
-      prevNode = node;
-    };
-
     //// delete any
-    prevNode.next = currentNode.next;
+    let { node: currentNode } = this.search(value);
+    let prevNode = currentNode.prev;
+    let nextNode = currentNode.next;
+    prevNode.next = nextNode;
+    nextNode.prev = prevNode;
+
     this.size--;
     return currentNode;
   },
   reverse() {
     if(this.head == null) return this.head;
-    let prevNode = null;
+    //let prevNode = null;
     let currentNode = this.head;
     for(let node of this) {
       currentNode = node;
+      let nextNode = currentNode.next;
+      let prevNode = currentNode.prev;
+      currentNode.prev = nextNode;
       currentNode.next = prevNode;
-      prevNode = currentNode;
     };
     // swap
     let head = this.head;
@@ -140,7 +150,7 @@ const proto = {
   }
 };
 
-export function createNode(value, prev=null, next=null) {
+export function createNode(value, next=null, prev=null) {
   return {
     value,
     next,
