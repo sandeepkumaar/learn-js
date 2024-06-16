@@ -1,14 +1,11 @@
 /**
- * Generator function returns an Object called Generator Object.
- * Generator object is iterable  through Iterators
- * Generator object is run only once.  
- * 
- * Generators are used when we want to run "procedures" over a period of events
- * Procedures are statements/functions that run one after the other.
- *
- *
+ * Using Generators
+ * Generators are a special kind of iterators with yield concept
 */
 
+/**
+ * Generators as procedure
+*/
 function* gen() {
   console.log('procedure 1');
   yield 1;
@@ -38,3 +35,25 @@ for(const item of g2) {
   console.log(item) // 2, 3
 }
 
+
+/**
+ * Generators as normal iterators
+*/
+function* rangeGenerator(start=0, end=Infinity, step=1) {
+  let iterationCount = 0;
+  for(let i = start; i < end; i = i + step) {
+    iterationCount++;
+    yield i;
+  }
+  return iterationCount;
+
+};
+
+for(let item of rangeGenerator(1, 10, 3)) {
+  console.log('rangeGenerator', item);
+};
+let generator = rangeGenerator(1, 10, 3)
+console.log(generator.next());
+console.log(generator.next());
+console.log(generator.next());
+console.log(generator.next());

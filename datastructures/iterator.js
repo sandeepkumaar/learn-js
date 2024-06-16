@@ -9,122 +9,63 @@
  * 
 */
 
-// Iterator protocol
-let arr = ['a', 'b', 'c'];
-let iterator = {
-  index: 0, // head
-  next: function() {
-    if(this.index < arr.length) {
-      return {
-        value: arr[this.index++],
-        done: false
+function rangeIterator(start=0, end=Infinity, step=1) {
+  let iterationCount = 0;
+  return {
+    next: function() {
+      if(start < end) {
+        let value = start;
+        start = start + step;
+        iterationCount++;
+        return { value, done: false }
       }
-    } else {
-      return { done: true }
+      return {value: iterationCount, done: true}
     }
-
   }
 };
-console.log('--------- simple Iterator -----------');
-console.log(iterator.next());
+
+let iterator = rangeIterator(1, 10, 3);
 console.log(iterator.next());
 console.log(iterator.next());
 console.log(iterator.next());
 console.log(iterator.next());
 
 /**
- * Iterable is an object that has the list of items and implements an iterator
- * ie. [Symbol.iterator()]
+ * Using Symbol
 */
-
-let iterable = {
-  arr: ['a', 'b', 'c'],
-  iterator: () => { // Iterable implements Iterator method
-    let index = 0;
-    let next = function() { 
-      // iterator protocol
-      if(index < iterable.arr.length) {
-        return {
-          value: iterable.arr[index++],
-          done: false
-        }
-      } else {
-        return { done: true }
+function rangeSymbolIterator(start=0, end=Infinity, step=1) {
+  let iterationCount = 0;
+  return {
+    next: function() {
+      if(start < end) {
+        let value = start;
+        start = start + step;
+        iterationCount++;
+        return { value, done: false }
       }
-    }
-    return { // reuturns Iterator Protocol object
-      next,
+      return {value: iterationCount, done: true}
+    },
+    [Symbol.iterator]() {
+      return this;
     }
   }
 };
 
-let customIterator = iterable.iterator();
-
-console.log('--------- custom Iterator -----------');
-console.log(customIterator.next());
-console.log(customIterator.next());
-console.log(customIterator.next());
-console.log(customIterator.next());
-console.log(customIterator.next());
-
+for (let item of rangeSymbolIterator(1, 10, 3)) {
+  console.log('rangeSymbolIterator', item);
+}
 
 /**
- * Using built-in [Symbol.Iterator]() {}
+ * Using Generator
 */
-/*
-let iterable2 = {
-  arr: ['a', 'b', 'c'],
-  [Symbol.iterator]() { // Iterable implements Iterator method
-    let index = 0;
-    let next = function() { 
-      // iterator protocol
-      if(index < iterable.arr.length) {
-        return {
-          value: iterable.arr[index++],
-          done: false
-        }
-      } else {
-        return { done: true }
-      }
-    }
-    return { // reuturns Iterator Protocol object
-      next,
-    }
-  }
-};
-*/
-
-let iterable2 = {
-  arr: ['a', 'b', 'c'],
-  index: 0,
-  next: function() { 
-    // iterator protocol
-    if(this.index < iterable.arr.length) {
-      return {
-        value: iterable.arr[this.index++],
-        done: false
-      }
-    } else {
-      return { done: true }
-    }
-  },
-  [Symbol.iterator]() { // Iterable implements Iterator method
-    this.index = 0;
-    return this;
-  }
+function* rangeGenerator(start=0, end=Infinity, step=1) {
+  let iterationCount = 0;
+  for(let i=start; i < end; i += step) {
+    yield i;
+  };
+  return iterationCount;
 };
 
-let builtInIterator = iterable2[Symbol.iterator]();
-console.log('--------- builtin Iterator -----------');
-console.log(builtInIterator.next(), builtInIterator.index);
-console.log(builtInIterator.next(), builtInIterator.index);
-console.log(builtInIterator.next(), builtInIterator.index);
-console.log(builtInIterator.next(), builtInIterator.index);
-console.log(builtInIterator.next(), builtInIterator.index);
-
-
-
-console.log('--------- for of  -----------');
-for(let item of iterable2) {
-  console.log(item);
+for (let item of rangeGenerator(1, 10, 3)) {
+  console.log('rangeGenerator', item);
 };
