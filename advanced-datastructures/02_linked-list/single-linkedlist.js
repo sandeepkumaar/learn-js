@@ -1,5 +1,5 @@
 
-let proto = {
+const proto = {
   search(value) {
     let index = 0;
     let compare = this.compare;
@@ -102,7 +102,21 @@ let proto = {
     this.size--;
     return currentNode;
   },
-  //reverse: () => {},
+  reverse() {
+    if(this.head == null) return this.head;
+    let prevNode = null;
+    let currentNode = this.head;
+    for(let node of this) {
+      currentNode = node;
+      currentNode.next = prevNode;
+      prevNode = currentNode;
+    };
+    // swap
+    let head = this.head;
+    this.head = this.tail;
+    this.tail = head;
+    return this;
+  },
   //[Symbol.iterator]() {
   //  let currentNode = this.head;
   //  return {

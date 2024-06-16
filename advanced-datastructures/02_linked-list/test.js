@@ -148,5 +148,25 @@ test('push-pop', async (t) => {
   })
 });
 
+test('reverse', async(t) => {
+  await t.test('null head', () => {
+    let linkedList = createLinkedList();
+    let reverse = linkedList.reverse();
+    assert.deepEqual(reverse, null);
+  })
+
+  await t.test('one value', () => {
+    let linkedList = createLinkedList(['a']);
+    let reverse = linkedList.reverse();
+    assert.deepEqual(toArray(reverse), ['a']);
+  })
+  await t.test('many', () => {
+    let linkedList = createLinkedList(['a', 'b', 'c']);
+    let reverse = linkedList.reverse();
+    assert.deepEqual(toArray(reverse), ['c', 'b', 'a']);
+    assert.deepEqual(toArray(linkedList), ['c', 'b', 'a']);
+  })
+})
+
 
 
