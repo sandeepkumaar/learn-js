@@ -1,31 +1,93 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import createLinkedList from './index.js';
+import createLinkedList from './single-linkedlist.js';
 
 let toArray = (linkedList) => {
   let arr = [];
-  for(let value of linkedList) {
-    arr.push(value)
+  for(let node of linkedList) {
+    arr.push(node.value)
   };
   return arr;
 
 }
 
+let compare = (a='', b='') => a.localeCompare(b)
+
 
 test('iterable', () => {
-  let linkedList = createLinkedList(['a', 'b', 'c']);
+  let linkedList = createLinkedList(['a', 'b', 'c'], compare);
   assert.deepEqual(linkedList.size, 3);
   let arr = toArray(linkedList);
   assert.deepEqual(arr, ['a', 'b', 'c'])
 })
+test('search', () => {
+  let linkedList = createLinkedList(['a', 'b', 'c'], compare);
+  let node = linkedList.search('b');
+  assert.equal(node.value, 'b');
+})
+
 
 test('at', () => {
   let linkedList = createLinkedList(['a', 'b', 'c']);
-  assert.equal(linkedList.at(2), 'c')
-  assert.equal(linkedList.at(3), undefined)
-  assert.equal(linkedList.at(-1), 'c')
+  assert.equal(linkedList.at(2).value, 'c')
+  assert.equal(linkedList.at(3)?.value, undefined)
+  assert.equal(linkedList.at(-1)?.value, 'c')
 });
 
+test('unshift-shift', async t => {
+  await t.test('unshift', () => {
+    // no head
+    let linkedList = createLinkedList();
+    const node = linkedList.unshift('a');
+    assert.equal(node.value, 'a');
+    assert.equal(linkedList.size, 1);
+    // unshift
+    linkedList.unshift('b');
+    let arr = toArray(linkedList);
+    assert.deepEqual(arr, ['b', 'a']);
+    assert.equal(linkedList.size, 2);
+  })
+  //await t.test('shift', () => {
+  //  let linkedList = createLinkedList();
+  //  linkedList.unshift('a');
+  //  let shifted = linkedList.shift('a');
+  //  assert.equal(shifted, 'a');
+  //  assert.equal(linkedList.size, 1);
+  //})
+
+})
+
+test('insert', async (t) => {
+  await t.test('no head', () => {
+    let linkedList = createLinkedList();
+    linkedList.insert('c');
+    assert.equal(linkedList.size, 1)
+    assert.equal(linkedList.at(0)?.value, 'c')
+  })
+  await t.test('preprend', () => {
+    let linkedList = createLinkedList(['a']);
+    linkedList.insert('c', 0);
+    assert.equal(linkedList.size, 2)
+    assert.deepEqual(toArray(linkedList), ['c', 'a'])
+  })
+  await t.test('append', () => {
+    let linkedList = createLinkedList();
+    linkedList.insert('a');
+    assert.equal(linkedList.size, 1);
+    assert.equal(linkedList.at(0)?.value, 'a');
+    linkedList.insert('b', 100);
+    assert.equal(linkedList.size, 2);
+    assert.equal(linkedList.at(1)?.value, 'b');
+    linkedList.insert('c', 1);
+    assert.deepEqual(toArray(linkedList), ['a', 'c', 'b']);
+
+  })
+  //await t.test('insertAt', () => {
+  //})
+});
+
+
+/*
 test('push-pop', async (t) => {
   await t.test('push', () => {
     let linkedList = createLinkedList();
@@ -54,26 +116,7 @@ test('push-pop', async (t) => {
   })
 });
 
-test('unshift-shift', {only: true}, async t => {
-  await t.test('unshift', () => {
-    let linkedList = createLinkedList();
-    const v = linkedList.unshift('a');
-    assert.equal(v, 'a');
-    assert.equal(linkedList.size, 1);
-    linkedList.unshift('b');
-    let arr = toArray(linkedList);
-    assert.deepEqual(arr, ['b', 'a']);
-    assert.equal(linkedList.size, 2);
-  })
-  await t.test('shift', () => {
-    let linkedList = createLinkedList();
-    linkedList.unshift('a');
-    let shifted = linkedList.shift('a');
-    assert.equal(shifted, 'a');
-    assert.equal(linkedList.size, 1);
-  })
 
-})
 
 test('splice', {only: true}, async t => {
   await t.test('delete', () => {
@@ -82,7 +125,6 @@ test('splice', {only: true}, async t => {
     let arr = toArray(linkedList);
     assert.deepEqual(arr, []);
   })
-  /*
   await t.test('insert', () => {
     let linkedList = createLinkedList();
     let res = linkedList.splice(0, 0, 'a');
@@ -96,8 +138,7 @@ test('splice', {only: true}, async t => {
   })
   await t.test('update', () => {
   })
-  */
 })
-
+*/
 
 
