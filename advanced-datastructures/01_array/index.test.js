@@ -4,6 +4,7 @@ import {
   insert,
   search,
   deleteArr,
+  reverse
 } from './index.js'
 
 
@@ -34,6 +35,13 @@ test('delete', async(t) => {
   await t.test('value', () => {
     let arr = deleteArr([1, 2, 3, 4, 5], 3);
     assert.deepEqual(arr, [1, 2, 4, 5]);
+  })
+})
+
+test('reverse', async(t) => {
+  await t.test('value', () => {
+    let arr = reverse([1, 2, 3, 4, 5]);
+    assert.deepEqual(arr, [5, 4, 3, 2, 1]);
   })
 })
 

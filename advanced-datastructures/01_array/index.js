@@ -52,4 +52,24 @@ export const deleteArr = function(arr, value) {
   return arr;
 };
 
+/**
+ * reverse
+ * two pointers - start, end - swap
+*/
+
+export const reverse = function(arr) {
+  let start = 0;
+  let end = arr.length - 1;
+  while(start < end) {
+    let a = arr[start]
+    let b = arr[end];
+    // swap
+    arr[start] = b;
+    arr[end] = a;
+    // iterate
+    start++;
+    end--;
+  }
+  return arr;
+}
 
