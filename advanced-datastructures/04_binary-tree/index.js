@@ -13,9 +13,9 @@ function createNode(data) {
  * Recursively traverse the tree for the null spot, add the node and backtrack
 */
 const insertNode = function(parent, node) {
+  // exit condition
   if(parent == null) {
-    parent = node;
-    return parent;
+    return node;
   };
 
   if(node.data < parent.data) {
